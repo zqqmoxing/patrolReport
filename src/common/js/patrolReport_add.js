@@ -1,0 +1,193 @@
+import 'babel-polyfill';
+import $ from 'plugins/jquery/jquery-vendor.js';
+import 'amazeui';
+import 'amazeui/dist/css/amazeui.css';
+import 'scss/common.scss';
+import 'scss/style.scss';
+
+import 'ztree/css/zTreeStyle/zTreeStyle.css';
+import 'ztree'
+
+export default class FileManage {
+    constructor() {
+        let IScroll = $.AMUI.iScroll;
+        this.datePackageScroll = new IScroll('.datePackage',{
+            mouseWheel: true,
+            scrollbars: true
+        });
+        this.areaPackageScroll = new IScroll('.areaPackage',{
+            mouseWheel: true,
+            scrollbars: true
+        });
+        this.cunstomPackageScroll = new IScroll('.cunstomPackage',{
+            mouseWheel: true,
+            scrollbars: true,
+            resizeScrollbars:true
+        });
+        this.setting1 = {
+			edit: {
+				enable: false,
+				showRemoveBtn: false,
+				showRenameBtn: false
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			}
+        };
+        
+        this.setting3 = {
+            view: {
+				addHoverDom: addHoverDom,
+				removeHoverDom: removeHoverDom,
+				selectedMulti: false
+			},
+			edit: {
+				enable: true,
+				editNameSelectAll: true,
+				showRemoveBtn: showRemoveBtn,
+				showRenameBtn: showRenameBtn
+                
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+            },
+            callback: {
+				beforeDrag: beforeDrag,
+                beforeDrop: beforeDrop,
+                beforeEditName: beforeEditName,
+				beforeRemove: beforeRemove,
+				beforeRename: beforeRename,
+				onRemove: onRemove,
+				onRename: onRename
+			}
+        };
+        
+		this.zNodes1 =[
+			{ id:1, pId:0, name:"2018年(55)", open:true},
+			{ id:11, pId:1, name:"12月(10)"},
+			{ id:12, pId:1, name:"11月(20)"},
+			{ id:13, pId:1, name:"10月(25)"},
+			{ id:2, pId:0, name:"2017年(55)", open:true},
+			{ id:21, pId:2, name:"12月(10)"},
+			{ id:22, pId:2, name:"11月(20)"},
+			{ id:23, pId:2, name:"10月(25)"},
+			{ id:3, pId:0, name:"2016年(55)", open:true},
+			{ id:31, pId:3, name:"12月(10)"},
+			{ id:32, pId:3, name:"11月(20)"},
+			{ id:33, pId:3, name:"10月(25)"}
+        ];
+        this.zNodes2 =[
+			{ id:1, pId:0, name:"建邺区(55)", open:true},
+			{ id:11, pId:1, name:"楠溪江东街(10)"},
+			{ id:12, pId:1, name:"黄山路(20)"},
+			{ id:13, pId:1, name:"云龙山路(25)"},
+			{ id:2, pId:0, name:"玄武区", open:true},
+			{ id:3, pId:0, name:"鼓楼区", open:true},
+        ];
+        this.zNodes3 =[
+			{ id:1, pId:0, name:"自定义(55)", open:true},
+			{ id:11, pId:1, name:"名称1(10)"},
+			{ id:12, pId:1, name:"名称2(20)"},
+			{ id:13, pId:1, name:"名称3(25)"},
+        ];
+        
+        $.fn.zTree.init($("#treeDemo"), this.setting1, this.zNodes1);
+        $.fn.zTree.init($("#treeDemo2"), this.setting1, this.zNodes2);
+        $.fn.zTree.init($("#treeDemo3"), this.setting3, this.zNodes3);
+    
+        
+		var className = "dark";
+        function beforeDrop(treeId, treeNodes, targetNode, moveType) {
+            return targetNode ? targetNode.drop !== false : true;
+        }
+
+        function beforeDrag(treeId, treeNodes) {
+            for (var i=0,l=treeNodes.length; i<l; i++) {
+                if (treeNodes[i].drag === false) {
+                    return false;
+                }
+            }
+            return true;
+        }
+		function beforeEditName(treeId, treeNode) {
+			className = (className === "dark" ? "":"dark");
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo3");
+			zTree.selectNode(treeNode);
+			setTimeout(function() {
+				if (confirm("进入节点 -- " + treeNode.name + " 的编辑状态吗？")) {
+					setTimeout(function() {
+						zTree.editName(treeNode);
+					}, 0);
+				}
+			}, 0);
+			return false;
+		}
+		function beforeRemove(treeId, treeNode) {
+			className = (className === "dark" ? "":"dark");
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo3");
+			zTree.selectNode(treeNode);
+			return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
+		}
+		function onRemove(e, treeId, treeNode) {
+		}
+		function beforeRename(treeId, treeNode, newName, isCancel) {
+			className = (className === "dark" ? "":"dark");
+			if (newName.length == 0) {
+				setTimeout(function() {
+					var zTree = $.fn.zTree.getZTreeObj("treeDemo3");
+					zTree.cancelEditName();
+					alert("节点名称不能为空.");
+				}, 0);
+				return false;
+			}
+			return true;
+		}
+		function onRename(e, treeId, treeNode, isCancel) {
+		}
+		function showRemoveBtn(treeId, treeNode) {
+			return !treeNode.isFirstNode;
+		}
+		function showRenameBtn(treeId, treeNode) {
+			return !treeNode.isLastNode;
+		}
+
+        var newCount = 1;
+        let _this = this;
+		function addHoverDom(treeId, treeNode) {
+			var sObj = $("#" + treeNode.tId + "_span");
+			if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+			var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+				+ "' title='add node' onfocus='this.blur();'></span>";
+			sObj.after(addStr);
+			var btn = $("#addBtn_"+treeNode.tId);
+			if (btn) btn.bind("click", (e) => {
+				var zTree = $.fn.zTree.getZTreeObj("treeDemo3");
+                zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+                _this.cunstomPackageScroll.refresh();
+				return false;
+			});
+		};
+		function removeHoverDom(treeId, treeNode) {
+			$("#addBtn_"+treeNode.tId).unbind().remove();
+		};
+		function selectAll() {
+			var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+			zTree.setting.edit.editNameSelectAll =  $("#selectAll").attr("checked");
+		}
+
+		(function removeEvent() {
+			$("#treeDemo3.ztree").off("dblclick");
+			console.log($("#treeDemo3 a").length)
+		})()
+
+
+    }
+
+
+    
+}
+

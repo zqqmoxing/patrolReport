@@ -1,0 +1,11 @@
+<div class="imgTitle">
+    <span class="am-icon-th-list">图片列表</span>
+    <span class="all" id="allList">所有图片</span>
+</div>
+<div class="imgContent">
+    {{each data.src}}
+    <div>
+        <img src="{{$value}}" alt="">
+    </div>
+    {{/each}}
+</div>

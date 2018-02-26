@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>报告浏览器</title>
+    <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=4dac32a7489d5389ae88dcc21cd8c046"></script>
+</head>
+<body>
+<!--<div class="navbar" role="navigation">-->
+    <!--<div class="navbar-inner">-->
+        <!--报告浏览器-->
+    <!--</div>-->
+<!--</div>-->
+<div class="reportDetails">
+    <div class="topInform clearfix">
+        <div class="topRightInform">
+            <div class="abstract">
+                <div class="abstractTitle">
+                    <i class="am-icon-th-list">摘要</i>
+                </div>
+                <ul class="am-list am-list-static">
+                    <li><i class="am-icon-user am-icon-fw"></i><span>警员名称：</span><span class="abstractD">张三</span></li>
+                    <li><i class="am-icon-user-secret am-icon-fw"></i><span>警员号：</span><span class="abstractD">0001</span></li>
+                    <li><i class="am-icon-hourglass-start am-icon-fw"></i><span>开始时间：</span><span class="abstractD">2018-01-01 10:10:10</span></li>
+                    <li><i class="am-icon-hourglass-end am-icon-fw"></i><span>结束时间：</span><span class="abstractD">2018-01-02 10:10:10</span></li>
+                    <li><i class="am-icon-paper-plane am-icon-fw"></i><span>开始地址：</span><span class="abstractD">南京市建邺区云龙山路</span></li>
+                    <li><i class="am-icon-paper-plane-o am-icon-fw"></i><span>结束地址：</span><span class="abstractD">南京市建邺区云龙山路</span></li>
+                    <li><i class="am-icon-paper-plane-o am-icon-fw"></i><span>巡逻路线：</span><span class="abstractD">起始地址A-地点A-地点B-地点C-地点D-结束地址B</span></li>
+                </ul>
+            </div>
+            <div class="summaryWrap">
+                <div id="summary" class="summary">
+
+                </div>
+            </div>
+        </div>
+        <div class="mapWrap">
+            <div class="map" id="map"></div>
+            <!--<div class="videoList">-->
+
+            <!--</div>-->
+
+            <video id="video" class="video video-js vjs-default-skin vjs-big-play-centered" preload="auto" width="480" height="300"
+                   data-setup="{}" controls>
+                <source src="http://jq22com.qiniudn.com/jq22-sp.mp4" type="video/mp4">
+                <!--<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>-->
+            </video>
+        </div>
+        <div class="topLeftInform">
+            <div class="filterTitle">
+                <i class="am-icon-th-list">筛选条件</i>
+            </div>
+            <div class="filterContent">
+                <div class="peopleWrap filterContentWrap">
+                    <div class="peopleTitle filterContentTitle">人形特征识别</div>
+                    <div class="peopleContent filterContentC">
+                        <div class="pC1 filterContentPC">
+                            <div>
+                                <span>性别:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">男</span>
+                                <span class="selected1">女</span>
+                            </div>
+                            <div>
+                                <span>打伞:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">是</span>
+                                <span class="selected1">否</span>
+                            </div>
+                            <div>
+                                <span>背包:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">是</span>
+                                <span class="selected1">否</span>
+                            </div>
+                        </div>
+                        <div class="pC2 filterContentPC">
+                            <div>
+                                <span>戴眼镜:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">是</span>
+                                <span class="selected1">否</span>
+                            </div>
+
+                            <div>
+                                <span>上衣颜色:</span>
+                                <select name="tops">
+                                    <option value="">红</option>
+                                    <option value="">黑</option>
+                                    <option value="">白</option>
+                                    <option value="">灰</option>
+                                    <option value="">蓝</option>
+                                    <option value="">紫</option>
+                                </select>
+                            </div>
+                            <div>
+                                <span>下衣颜色:</span>
+                                <select name="tops">
+                                    <option value="">红</option>
+                                    <option value="">黑</option>
+                                    <option value="">白</option>
+                                    <option value="">灰</option>
+                                    <option value="">蓝</option>
+                                    <option value="">紫</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carWrap filterContentWrap">
+                    <div class="carTitle filterContentTitle">车辆特征识别</div>
+                    <div class="carContent filterContentC">
+                        <div class="pC1 filterContentPC">
+                            <div>
+                                <span>车牌:</span>
+                                <select name="number">
+                                    <option value="">苏A32541</option>
+                                    <option value="">苏A32542</option>
+                                    <option value="">苏A32543</option>
+                                    <option value="">苏A32544</option>
+                                    <option value="">苏A32545</option>
+                                    <option value="">苏A32546</option>
+                                </select>
+                            </div>
+                            <div>
+                                <span>车标:</span>
+                                <select name="number">
+                                    <option value="">大众</option>
+                                    <option value="">现代</option>
+                                    <option value="">奔驰</option>
+                                    <option value="">马自达</option>
+                                    <option value="">标志</option>
+                                </select>
+                            </div>
+                            <div>
+                                <span>车型:</span>
+                                <select name="number">
+                                    <option value="">MPV</option>
+                                    <option value="">SUV</option>
+                                    <option value="">三厢车</option>
+                                    <option value="">两厢车</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="pC2 filterContentPC">
+                            <div>
+                                <span>年检标识:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">有</span>
+                                <span class="selected1">无</span>
+                            </div>
+
+                            <div>
+                                <span>安全带:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">有</span>
+                                <span class="selected1">无</span>
+                            </div>
+                            <div>
+                                <span>车身颜色:</span>
+                                <select name="carColor">
+                                    <option value="">红</option>
+                                    <option value="">黑</option>
+                                    <option value="">白</option>
+                                    <option value="">蓝</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="faceWrap filterContentWrap">
+                    <div class="faceTitle filterContentTitle">人脸特征识别</div>
+                    <div class="faceContent filterContentC">
+                        <div class="pC1 filterContentPC">
+                            <div>
+                                <span>性别:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">男</span>
+                                <span class="selected1">女</span>
+                            </div>
+                            <div>
+                                <span>皮肤颜色:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">是</span>
+                                <span class="selected1">否</span>
+                            </div>
+                        </div>
+                        <div class="pC2 filterContentPC">
+                            <div>
+                                <span>戴眼镜:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">是</span>
+                                <span class="selected1">否</span>
+                            </div>
+                            <div>
+                                <span>戴口罩:</span>
+                                <span class="selected1 active">不限</span>
+                                <span class="selected1">是</span>
+                                <span class="selected1">否</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="button">确定</button>
+            </div>
+        </div>
+    </div>
+    <div class="middleInform">
+        <div class="imgList clearfix" id="imgList">
+
+        </div>
+    </div>
+    <div class="bottomInform">
+        <div class="bottomTitle">
+            <i class="am-icon-th-list">采集的信息</i>
+        </div>
+        <div class="am-tabs" data-am-tabs="{noSwipe: 1}" id="doc-tab-demo-1">
+            <ul class="am-tabs-nav am-nav am-nav-tabs">
+                <!--<li class="am-active"><a href="javascript: void(0)">tab1</a></li>-->
+                <!--<li><a href="javascript: void(0)">tab2</a></li>-->
+                <!--<li><a href="javascript: void(0)">tab3</a></li>-->
+            </ul>
+
+            <div class="am-tabs-bd">
+                <div class="am-tab-panel am-active">
+                    <div class="reportList clearfix reportList1">
+
+                    </div>
+                </div>
+                <div class="am-tab-panel">
+                    <div class="reportList clearfix reportList2">
+
+                    </div>
+                </div>
+                <div class="am-tab-panel">
+                    <div class="reportList clearfix reportList3">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<div class="summaryTitle">
+    <i class="am-icon-th-list">汇总</i>
+</div>
+<ul class="am-list am-list-static">
+    <li>
+        <div>
+            <i class="am-icon-user am-icon-fw"></i><span>人：</span><span class="abstractD">55</span>
+        </div>
+        <div>
+            <i class="am-icon-car am-icon-fw"></i><span>车：</span><span class="abstractD">56</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <i class="am-icon-tasks am-icon-fw"></i><span>物：</span><span class="abstractD">55</span>
+        </div>
+        <div>
+            <i class="am-icon-user-secret am-icon-fw"></i><span>脸：</span><span class="abstractD">56</span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <i class="am-icon-wifi am-icon-fw"></i><span>电：</span><span class="abstractD">55</span>
+        </div>
+    </li>
+</ul>

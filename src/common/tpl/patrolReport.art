@@ -1,0 +1,56 @@
+<div id="fileManage" class="package">
+    <div class="datePackage">
+        <div>
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+    </div>
+    <div class="areaPackage">
+        <div>
+            <ul id="treeDemo2" class="ztree"></ul>
+        </div>
+    </div>
+    <div class="cunstomPackage">
+        <div>
+            <ul id="treeDemo3" class="ztree"></ul>
+        </div>
+    </div>
+</div>
+<div id="patrolReport" class="patrolReport">
+    <div class="reportTable">
+        <div class="reportThead">
+            <div>警员名称</div>
+            <div>警号</div>
+            <div>起始时间</div>
+            <div>结束时间</div>
+            <div>起始位置</div>
+            <div>结束位置</div>
+            <div>区域</div>
+        </div>
+    </div>
+    <div class="am-list-news am-list-news-default" id="wrapper" data-am-widget="list_news">
+        <div class="am-list-news-bd">
+            <div class="pull-action loading pull-down" id="pull-down">
+            <span class="am-icon-arrow-down pull-label"
+                  id="pull-down-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="am-list" id="events-list">
+
+            </ul>
+            <div class="pull-action pull-up" id="pull-up">
+            <span class="am-icon-arrow-down pull-label"
+                  id="pull-up-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <div class="pull-action pull-none" id="pull-none">
+                没有更多了...
+            </div>
+        </div>
+    </div>
+    <div class="map" id="map">
+    </div>
+</div>
+
+
+
+

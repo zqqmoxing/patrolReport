@@ -1,0 +1,11 @@
+{{each data}}
+<li class="">
+    <div><a href="../reportDetails.html">{{$value.name}}</a></div>
+    <div>{{$value.number}}</div>
+    <div>{{$value.startTime}}</div>
+    <div>{{$value.endTime}}</div>
+    <div>{{$value.startAdd}}</div>
+    <div>{{$value.endAdd}}</div>
+    <div>{{$value.area}}</div>
+</li>
+{{/each}}
