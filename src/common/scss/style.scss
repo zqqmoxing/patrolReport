@@ -102,6 +102,28 @@
     width: 1300px;
     float: left;
 
+    .file-explorer{
+      // background-color: yellow;      
+      border: 2px solid rgba(0, 155, 255, 0.7);
+      position: absolute;
+      top: 60px;
+      bottom: 30px;      
+      width: 1300px;
+      margin: auto;
+      padding: 5px;
+      overflow: overlay;
+      
+      .item {
+        float: left;
+        width: 180px;
+        height: 240px;
+        background-color: rgb(235, 187, 187);
+        margin: 35px;
+      
+      }
+
+    }
+
     .btns{
       padding:10px 0px;
       width:1300px;
@@ -483,8 +505,8 @@
       border-width: 1px;
       border-top-width: 10px;
       border-style: solid;
-      border-color: #e7e1bd;
-      overflow: hidden;
+      border-color: #e7e1bd;      
+      overflow: overlay;
     }
     .areaPackage{
       width: $_width;
@@ -493,7 +515,7 @@
       border-top-width: 10px;
       border-style: solid;
       border-color: #e7e1bd;
-      overflow: hidden;
+      overflow: overlay;
     }
     .cunstomPackage{
       width: $_width;
@@ -502,7 +524,7 @@
       border-top-width: 10px;
       border-style: solid;
       border-color: #e7e1bd;
-      overflow: hidden;
+      overflow: overlay;
     }
   }
 }

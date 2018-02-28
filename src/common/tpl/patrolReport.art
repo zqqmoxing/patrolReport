@@ -1,20 +1,4 @@
-<div id="fileManage" class="package">
-    <div class="datePackage">
-        <div>
-            <ul id="treeDemo" class="ztree"></ul>
-        </div>
-    </div>
-    <div class="areaPackage">
-        <div>
-            <ul id="treeDemo2" class="ztree"></ul>
-        </div>
-    </div>
-    <div class="cunstomPackage">
-        <div>
-            <ul id="treeDemo3" class="ztree"></ul>
-        </div>
-    </div>
-</div>
+{{include './fileExplorer' $value}}
 <div id="patrolReport" class="patrolReport">
     <div class="reportTable">
         <div class="reportThead">

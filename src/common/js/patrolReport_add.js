@@ -10,20 +10,14 @@ import 'ztree'
 
 export default class FileManage {
     constructor() {
-        let IScroll = $.AMUI.iScroll;
-        this.datePackageScroll = new IScroll('.datePackage',{
+		let IScroll = $.AMUI.iScroll;
+		const option = {
             mouseWheel: true,
             scrollbars: true
-        });
-        this.areaPackageScroll = new IScroll('.areaPackage',{
-            mouseWheel: true,
-            scrollbars: true
-        });
-        this.cunstomPackageScroll = new IScroll('.cunstomPackage',{
-            mouseWheel: true,
-            scrollbars: true,
-            resizeScrollbars:true
-        });
+        }
+        this.datePackageScroll = new IScroll('.datePackage', option);
+        this.areaPackageScroll = new IScroll('.areaPackage', option);
+        this.cunstomPackageScroll = new IScroll('.cunstomPackage', option);
         this.setting1 = {
 			edit: {
 				enable: false,
@@ -62,7 +56,8 @@ export default class FileManage {
 				beforeRemove: beforeRemove,
 				beforeRename: beforeRename,
 				onRemove: onRemove,
-				onRename: onRename
+				onRename: onRename,
+				onClick: treeNodeClick
 			}
         };
         
@@ -89,7 +84,7 @@ export default class FileManage {
 			{ id:3, pId:0, name:"鼓楼区", open:true},
         ];
         this.zNodes3 =[
-			{ id:1, pId:0, name:"自定义(55)", open:true},
+			{ id:1, pId:0, name:"自定义(55)", open:true, datalength:55},
 			{ id:11, pId:1, name:"名称1(10)"},
 			{ id:12, pId:1, name:"名称2(20)"},
 			{ id:13, pId:1, name:"名称3(25)"},
@@ -97,8 +92,14 @@ export default class FileManage {
         
         $.fn.zTree.init($("#treeDemo"), this.setting1, this.zNodes1);
         $.fn.zTree.init($("#treeDemo2"), this.setting1, this.zNodes2);
-        $.fn.zTree.init($("#treeDemo3"), this.setting3, this.zNodes3);
-    
+		$.fn.zTree.init($("#customTree"), this.setting3, this.zNodes3);
+		this.datePackageScroll.refresh();
+        this.areaPackageScroll.refresh();
+        this.cunstomPackageScroll.refresh();
+	
+		function treeNodeClick(event, treeId, treeNode) {
+			console.log(treeNode.tId + ", " + treeNode.name, treeNode);
+		}
         
 		var className = "dark";
         function beforeDrop(treeId, treeNodes, targetNode, moveType) {
@@ -106,6 +107,7 @@ export default class FileManage {
         }
 
         function beforeDrag(treeId, treeNodes) {
+			// console.log(treeNodes[i].drag)
             for (var i=0,l=treeNodes.length; i<l; i++) {
                 if (treeNodes[i].drag === false) {
                     return false;
@@ -115,20 +117,16 @@ export default class FileManage {
         }
 		function beforeEditName(treeId, treeNode) {
 			className = (className === "dark" ? "":"dark");
-			var zTree = $.fn.zTree.getZTreeObj("treeDemo3");
+			var zTree = $.fn.zTree.getZTreeObj("customTree");
 			zTree.selectNode(treeNode);
 			setTimeout(function() {
-				if (confirm("进入节点 -- " + treeNode.name + " 的编辑状态吗？")) {
-					setTimeout(function() {
-						zTree.editName(treeNode);
-					}, 0);
-				}
+				zTree.editName(treeNode);
 			}, 0);
 			return false;
 		}
 		function beforeRemove(treeId, treeNode) {
 			className = (className === "dark" ? "":"dark");
-			var zTree = $.fn.zTree.getZTreeObj("treeDemo3");
+			var zTree = $.fn.zTree.getZTreeObj("customTree");
 			zTree.selectNode(treeNode);
 			return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
 		}
@@ -138,7 +136,7 @@ export default class FileManage {
 			className = (className === "dark" ? "":"dark");
 			if (newName.length == 0) {
 				setTimeout(function() {
-					var zTree = $.fn.zTree.getZTreeObj("treeDemo3");
+					var zTree = $.fn.zTree.getZTreeObj("customTree");
 					zTree.cancelEditName();
 					alert("节点名称不能为空.");
 				}, 0);
@@ -149,10 +147,13 @@ export default class FileManage {
 		function onRename(e, treeId, treeNode, isCancel) {
 		}
 		function showRemoveBtn(treeId, treeNode) {
-			return !treeNode.isFirstNode;
+			// console.log(treeNode)
+			return treeNode.pId;
+			// return true;
 		}
 		function showRenameBtn(treeId, treeNode) {
-			return !treeNode.isLastNode;
+			// return !treeNode.isLastNode;
+			return true;
 		}
 
         var newCount = 1;
@@ -165,8 +166,8 @@ export default class FileManage {
 			sObj.after(addStr);
 			var btn = $("#addBtn_"+treeNode.tId);
 			if (btn) btn.bind("click", (e) => {
-				var zTree = $.fn.zTree.getZTreeObj("treeDemo3");
-                zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"new node" + (newCount++)});
+				var zTree = $.fn.zTree.getZTreeObj("customTree");
+                zTree.addNodes(treeNode, {id:(100 + newCount), pId:treeNode.id, name:"自定义" + (newCount++)});
                 _this.cunstomPackageScroll.refresh();
 				return false;
 			});
@@ -180,8 +181,8 @@ export default class FileManage {
 		}
 
 		(function removeEvent() {
-			$("#treeDemo3.ztree").off("dblclick");
-			console.log($("#treeDemo3 a").length)
+			$("#customTree.ztree").off("dblclick");
+			console.log($("#customTree a").length)
 		})()
 
 

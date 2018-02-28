@@ -1,1 +1,8 @@
-我是文件
+{{include './fileExplorer' $value}}
+<div id="patrolReport" class="patrolReport">
+    <div class="file-explorer" id="filewrapper">
+        <div id="filewrappercontent" class="clearfix"></div>
+    </div>
+    <div class="map" id="map">
+    </div>
+</div>

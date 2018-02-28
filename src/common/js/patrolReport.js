@@ -9,11 +9,13 @@ import './event';//事件
 import FileManage from './patrolReport_add';
 // import {EventsList} from './common/js/iscroll';
 import data from '../json/config.json';
+import PatrolReport_Shift from './patrolReport_shift'
 
 const patrolReport = require('tpl/patrolReport.art');
 const table = require('tpl/table.art');
 const filter = require('tpl/filter.art');
 const file = require('tpl/file.art');
+const fileExplorer = require('tpl/fileExplorer.art')
 
 
 let theme = 'list';//list or map
@@ -40,6 +42,7 @@ function routerF(){
     });
     router.addPath('/file',file,null,function(){
         $('#change').attr('href','#/');
+        new PatrolReport_Shift();
     });
 }
 //滚动条
