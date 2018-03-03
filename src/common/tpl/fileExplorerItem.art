@@ -1,2 +1,18 @@
 
-<div class="item"><div>
+{{if ctg == 'file'}}
+<div id="{{index}}" class="item item-disselect item-file">
+    <div class="content">
+        <span class="title" >报告{{index+1}}</span><br/>
+        <span class="detail" >建邺区</span><br/>
+        <span class="detail" >烽火科技大厦</span><br/>
+        <span class="detail" >2018年3月1日</span>
+    </div>
+<div>
+{{else if ctg == 'folder'}}
+<div id="{{index}}" class="item item-disselect item-folder">
+    <div class="content">
+    </br>
+        <span class="title" >文件夹{{index+1}}</span><br/>
+    </div>
+<div>
+{{/if}}

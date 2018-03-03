@@ -9,7 +9,7 @@ import './event';//事件
 import FileManage from './patrolReport_add';
 // import {EventsList} from './common/js/iscroll';
 import data from '../json/config.json';
-import PatrolReport_Shift from './patrolReport_shift'
+import FileBrowser from './patrolReport_shift'
 
 const patrolReport = require('tpl/patrolReport.art');
 const table = require('tpl/table.art');
@@ -22,7 +22,7 @@ let theme = 'list';//list or map
 function init(){
     let _originHash = document.location.hash.slice(1);
     if(_originHash !== '/file'){
-        document.location.hash = '/';
+        document.location.hash = '/file';
     }
     eventChange();
     routerF();
@@ -34,7 +34,7 @@ function routerF(){
         $('#change').attr('href','#/file');
         $('#patrolReport').prepend(filter());
         $('#events-list').html(table({data:data.table}));
-        new FileManage();//文件管理列表
+        FileManage.getInstance();//文件管理列表
         setTime();
         iscroll();
         event();
@@ -42,7 +42,7 @@ function routerF(){
     });
     router.addPath('/file',file,null,function(){
         $('#change').attr('href','#/');
-        new PatrolReport_Shift();
+        FileBrowser.getInstance();
     });
 }
 //滚动条

@@ -36,11 +36,10 @@ function setTime(){
 //滚动条
 function iscroll(){
     let IScroll = $.AMUI.iScroll;
-    let myScroll = new IScroll('#filewrapper', {
-        mouseWheel: true,
-        scrollbars: true,
-    });
-    console.dir(myScroll.options);
+    // let myScroll = new IScroll('#filewrapper', {
+    //     mouseWheel: true,
+    //     scrollbars: false,
+    // });
     // var app = new EventsList(null, {
     //     api: 'https://api.douban.com/v2/event/list',
     //     params: {

@@ -104,23 +104,54 @@
 
     .file-explorer{
       // background-color: yellow;      
-      border: 2px solid rgba(0, 155, 255, 0.7);
+      // border: 2px solid rgba(0, 155, 255, 0.7);
+      box-shadow: #b3a0e8 0px 0px 5px 2px inset;
       position: absolute;
       top: 60px;
       bottom: 30px;      
       width: 1300px;
       margin: auto;
       padding: 5px;
-      overflow: overlay;
+      overflow: auto;
       
+      .item-file{
+        background-image: url("../img/filemanage/file.png");
+      }
+      .item-folder{
+        background-image: url("../img/filemanage/folder.png"); 
+      }
       .item {
         float: left;
-        width: 180px;
-        height: 240px;
-        background-color: rgb(235, 187, 187);
-        margin: 35px;
-      
+        width: 140px;
+        height: 200px;
+        // border: 1px solid rgba(0, 140, 255, 0.726);
+        margin: 30px 30px 0px 30px;
+        text-align: center;
+        // line-height: 16;
+        background-size: 80px 80px;
+        background-repeat: no-repeat;
+        background-position: top;
+        background-position-y: 20px;
+        .content {
+          position: relative;
+          top: 110px;
+          line-height: 15px;
+
+          .title {
+            font-weight: bolder;
+          }
+          .detail {
+            font-size: 10px;
+          }
+        }
+        
       }
+      .item-select {
+        box-shadow: rgb(120, 175, 207) 0px 0px 3px 1px;
+      }
+      // .item-disselect {
+      //   box-shadow: 3px 3px 3px #888888;
+      // }
 
     }
 
@@ -489,7 +520,7 @@
     -ms-transform: translate(0,-50%);
     -o-transform: translate(0,-50%);
     -moz-transform: translate(0,-50%);
-    top: 50%;
+    top: 52%;
     margin-right:20px;
     
     .ztree li span.button.add {
@@ -505,7 +536,7 @@
       border-width: 1px;
       border-top-width: 10px;
       border-style: solid;
-      border-color: #e7e1bd;      
+      border-color: #b3a0e8;      
       overflow: overlay;
     }
     .areaPackage{
@@ -514,7 +545,7 @@
       border-width: 1px;
       border-top-width: 10px;
       border-style: solid;
-      border-color: #e7e1bd;
+      border-color: #b3a0e8;
       overflow: overlay;
     }
     .cunstomPackage{
@@ -523,7 +554,7 @@
       border-width: 1px;
       border-top-width: 10px;
       border-style: solid;
-      border-color: #e7e1bd;
+      border-color: #b3a0e8;
       overflow: overlay;
     }
   }
