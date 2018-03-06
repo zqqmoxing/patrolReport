@@ -59,14 +59,14 @@ module.exports = {
     output: {
         path: __dirname + "/build",//打包后的文件存放的地方
         filename: "js/[name].bundle.js",//打包后输出文件的文件名
-        publicPath: "/static/"
+        publicPath: "/"
     },
     devServer: {
         contentBase: "./build",//本地服务器所加载的页面所在的目录
         historyApiFallback: true,//不跳转
         inline: true,//实时刷新,可以监控js变化
         // hot: true,//热模块替换
-        publicPath: "/static/",
+        publicPath: "/",
         // host: 'localhost',
         // port: 8080, // 默认8080
         // compress: true,

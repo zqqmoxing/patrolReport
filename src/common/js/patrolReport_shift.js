@@ -14,7 +14,7 @@ import {event,setTime, iscroll, map} from './patrolReport_common'
 
 export default class FileBrowser{
     static getInstance() {
-		if (!FileBrowser.instance) {
+		if (!FileBrowser.instance) { 
 			FileBrowser.instance = new FileBrowser();
 		}
 		return FileBrowser.instance;
@@ -24,7 +24,7 @@ export default class FileBrowser{
         const filter = require('tpl/filter.art');
 
         $('#patrolReport').prepend(filter());
-        new FileManage();//文件管理列表
+        FileManage.getInstance();//文件管理列表
         setTime();
         
         event();
@@ -49,6 +49,12 @@ export default class FileBrowser{
         $("#filewrappercontent .item-folder").on("dblclick", function(e){
            FileBrowser.getInstance().init(parseInt(Math.random()*15+1))
         });
+        $("#filewrappercontent .item-file").on("dblclick", function(e){
+            console.log(e.target.firstElementChild.firstElementChild.textContent)
+            // debugger
+            // alert("打开报告——"+ e.target.firstElementChild.firstElementChild.textContent)
+            window.location.href = "/police/reportDetail/reportDetails2.html";
+         });
 
         $("#filewrappercontent .item").on("click", function(e){
             // console.log(this.className)

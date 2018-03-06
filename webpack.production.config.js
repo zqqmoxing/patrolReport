@@ -48,7 +48,7 @@ module.exports = {
     output: {
         path: __dirname + "/dist", //打包后的文件存放的地方
         filename: "js/[name].bundle.js", //打包后输出文件的文件名
-        publicPath: "/"
+        publicPath: "./"
     },
     devtool: "null",
     module: {
@@ -84,10 +84,19 @@ module.exports = {
                 }
             },
             {
-                test: /\.(png|jpg|jpeg|gif|woff|svg|eot|ttf|woff2)$/,
+                test: /\.(png|jpg|jpeg|gif|svg|eot)$/,
                 loader: 'url-loader',
                 options: {
                     limit: 8192,
+                    name: 'img/[name].[ext]',
+                }
+            },
+            {
+                test: /\.(woff|ttf|woff2)$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                    publicPath:'../',
                     name: 'img/[name].[ext]',
                 }
             },

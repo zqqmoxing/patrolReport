@@ -2,5 +2,5 @@
 // function HTMLDirs1(){}
 // export = {HTMLDirs};
 module.exports = {
-    HTMLDirs:['patrolReport','reportDetails']
+    HTMLDirs:['patrolReport']
 }
