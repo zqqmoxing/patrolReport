@@ -51,8 +51,7 @@ export default class FileBrowser{
         });
         $("#filewrappercontent .item-file").on("dblclick", function(e){
             console.log(e.target.firstElementChild.firstElementChild.textContent)
-            // debugger
-            // alert("打开报告——"+ e.target.firstElementChild.firstElementChild.textContent)
+            
             window.location.href = "/police/reportDetail/reportDetails2.html";
          });
 

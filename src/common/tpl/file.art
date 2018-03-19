@@ -5,4 +5,6 @@
     </div>
     <div class="map" id="map">
     </div>
+    <div class="file-footer">
+    </div>
 </div>

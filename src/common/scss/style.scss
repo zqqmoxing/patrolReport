@@ -11,11 +11,19 @@
     width: 1300px;
     float: left;
 
+    .file-footer {
+      height:80px;
+      width:1300px;
+      box-shadow: #0F2A3F 0px 0px 5px 2px inset;
+      position: absolute;
+      bottom: 35px;
+    }
+
     .file-explorer{
       box-shadow: #0F2A3F 0px 0px 5px 2px inset;
       position: absolute;
       top: 60px;
-      bottom: 30px;      
+      bottom: 130px;      
       width: 1300px;
       margin: auto;
       padding: 5px;
